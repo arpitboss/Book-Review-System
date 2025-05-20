@@ -237,7 +237,7 @@ exports.deleteBook = async (req, res) => {
         }
 
         // Using pre middleware to delete associated reviews
-        await book.remove();
+        await book.deleteOne();
 
         res.status(200).json({
             success: true,
