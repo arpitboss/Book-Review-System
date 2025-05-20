@@ -17,6 +17,9 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
+// Importing routes
+app.use('/api/auth', require('./routes/authRoutes'));
+
 // Health check endpoint
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok' });
