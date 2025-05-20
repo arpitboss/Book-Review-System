@@ -59,8 +59,7 @@ exports.addReview = async (req, res) => {
 exports.updateReview = async (req, res) => {
     try {
         let review = await Review.findById(req.params.id);
-        console.log('ghfdjgkfhgjgk',review);
-
+        
         if (!review) {
             return res.status(404).json({
                 success: false,
