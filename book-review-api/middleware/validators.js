@@ -86,3 +86,22 @@ exports.paginationValidator = [
         .isInt({ min: 1, max: 100 })
         .withMessage('Limit must be between 1 and 100')
 ];
+
+// Review validators
+exports.reviewValidator = [
+    body('rating')
+        .isInt({ min: 1, max: 5 })
+        .withMessage('Rating must be between 1 and 5'),
+    body('comment')
+        .trim()
+        .not()
+        .isEmpty()
+        .withMessage('Comment is required')
+        .isLength({ max: 1000 })
+        .withMessage('Comment cannot be more than 1000 characters'),
+    body('title')
+        .optional()
+        .trim()
+        .isLength({ max: 100 })
+        .withMessage('Title cannot be more than 100 characters')
+];

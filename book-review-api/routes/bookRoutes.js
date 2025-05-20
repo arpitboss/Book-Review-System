@@ -8,12 +8,17 @@ const {
     deleteBook,
     searchBooks
 } = require('../controllers/bookController');
+const { addReview } = require('../controllers/reviewController');
 const {
     bookValidator,
+    reviewValidator,
     paginationValidator,
     validate
 } = require('../middleware/validators');
 const { protect } = require('../middleware/auth');
+
+// Search route
+router.get('/search', paginationValidator, validate, searchBooks);
 
 // Book routes
 router.route('/')
@@ -25,7 +30,7 @@ router.route('/:id')
     .put(protect, bookValidator, validate, updateBook)
     .delete(protect, deleteBook);
 
-// Search route
-router.get('/search', paginationValidator, validate, searchBooks);
+// Book review routes
+router.post('/:id/reviews', protect, reviewValidator, validate, addReview);
 
 module.exports = router;
