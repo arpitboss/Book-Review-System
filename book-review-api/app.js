@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const errorHandler = require('./utils/errorHandler');
 
 // Initializing Express app
 const app = express();
@@ -38,5 +39,8 @@ app.use((req, res, next) => {
     res.status(404);
     next(error);
 });
+
+// Error handler middleware
+app.use(errorHandler);
 
 module.exports = app;

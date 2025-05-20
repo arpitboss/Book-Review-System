@@ -59,6 +59,7 @@ exports.addReview = async (req, res) => {
 exports.updateReview = async (req, res) => {
     try {
         let review = await Review.findById(req.params.id);
+        console.log('ghfdjgkfhgjgk',review);
 
         if (!review) {
             return res.status(404).json({
@@ -118,7 +119,7 @@ exports.deleteReview = async (req, res) => {
             });
         }
 
-        await review.remove();
+        await review.deleteOne();
 
         res.status(200).json({
             success: true,
